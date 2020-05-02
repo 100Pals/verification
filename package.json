@@ -1,0 +1,35 @@
+{
+  "name": "verification",
+  "version": "1.0.0",
+  "description": "User verification for the Discord Server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel public/index.html",
+    "build": "parcel build --experimental-scope-hoisting public/*",
+    "format": "prettier --write src/**/*.{css,js} public/**/*.{html,js}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/100pals/verification.git"
+  },
+  "author": "Lilly Rose Berner <lilly@snowyluma.dev> (https://snowyluma.dev)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/100pals/verification/issues"
+  },
+  "homepage": "https://gitlab.com/100pals/verification#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "regenerator-runtime": "^0.13.5"
+  },
+  "devDependencies": {
+    "parcel": "^1.12.4",
+    "prettier": "^2.0.5"
+  },
+  "prettier": {
+    "printWidth": 100
+  }
+}
