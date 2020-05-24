@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel public/index.html",
-    "build": "parcel build --experimental-scope-hoisting public/*",
+    "build": "parcel build --experimental-scope-hoisting public/**/*",
     "format": "prettier --write src/**/*.{css,js} public/**/*.{html,js}"
   },
   "repository": {
@@ -28,8 +28,5 @@
   "devDependencies": {
     "parcel": "^1.12.4",
     "prettier": "^2.0.5"
-  },
-  "prettier": {
-    "printWidth": 100
   }
 }

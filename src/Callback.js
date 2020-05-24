@@ -2,35 +2,66 @@ import React, { Component } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 
 import api, { APIError } from "./api";
-import { Loading } from "./Common";
+import { AppFailure, Loading } from "./Common";
 
 class CallbackHandler extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { finished: false };
+    this.state = { loading: true, error: null };
   }
 
   async componentDidMount() {
-    // One of "discord", "steam"
-    const path = this.props.match.path.slice(1);
-    const search = new URLSearchParams(this.props.location.search);
-
-    if (path === "discord") {
-      await api.login(search.get("code"));
-    } else if (path === "steam") {
-      const data = { service: "steam", ...Object.fromEntries(search) };
-      await api.createConnection(data);
-    } else {
-      throw new Error(`Unhandled callback "${path}".`);
+    try {
+      await this.processData();
+    } catch (error) {
+      this.setState({ error });
     }
 
-    this.setState({ finished: true });
+    this.setState({ loading: false });
+  }
+
+  async processData() {
+    const path = this.props.location.pathname;
+    const search = new URLSearchParams(this.props.location.search);
+
+    // The Discord and Xbox auth flow can be cancelled
+    // In this case the user is redirected back to /app
+    switch (path) {
+      case "/auth/discord": {
+        const code = search.get("code");
+
+        if (code) {
+          await api.login(code);
+        }
+        break;
+      }
+      case "/auth/steam": {
+        await api.createSteamConnection(Object.fromEntries(search));
+        break;
+      }
+      case "/auth/xbox": {
+        const code = search.get("code");
+
+        if (code) {
+          await api.createXboxConnection(code);
+        }
+        break;
+      }
+      default: {
+        throw new Error("Invalid auth callback URL.");
+      }
+    }
   }
 
   render() {
-    const finished = this.state.finished;
-    return finished ? <Redirect to="/" /> : <Loading />;
+    const { loading, error } = this.state;
+
+    if (error) {
+      return <AppFailure error={error} />;
+    }
+
+    return loading ? <Loading /> : <Redirect to="/home" />;
   }
 }
 

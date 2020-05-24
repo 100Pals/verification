@@ -1,42 +1,56 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import api, { APIError } from "./api";
+import Accounts from "./Accounts/index";
+import api from "./api";
 import CallbackHandler from "./Callback";
 import { Loading } from "./Common";
 import Landing from "./Landing";
-import Menu from "./Menu";
+
+import "./app.css";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <MainPage />
-        </Route>
-        <Route path="/discord">
-          <CallbackHandler />
-        </Route>
-        <Route path="/steam">
-          <CallbackHandler />
-        </Route>
-      </Switch>
+      <div className="app">
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/home">
+            <MenuBase />
+          </Route>
+          <Route path="/auth">
+            <CallbackHandler />
+          </Route>
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }
 
-class MainPage extends Component {
+class MenuBase extends Component {
   constructor(props) {
     super(props);
 
     this.state = { user: null, loading: true };
+    this.updateUser = this.updateUser.bind(this);
   }
 
   async componentDidMount() {
+    await this.updateUser();
+  }
+
+  async updateUser() {
+    this.setState({ user: null, loading: true });
+
     try {
       const user = await api.getUser();
       this.setState({ user, loading: false });
     } catch {
+      // Ensure the user is completely
+      // Logged out, else logging in might error
+      api.removeToken();
       this.setState({ loading: false });
     }
   }
@@ -48,6 +62,11 @@ class MainPage extends Component {
       return <Loading />;
     }
 
-    return user ? <Menu user={user} /> : <Landing />;
+    return (
+      <div className="menu">
+        <h1>AchievementHunting.com - Verification</h1>
+        {user ? <Accounts user={user} updateUser={this.updateUser} /> : <Landing />}
+      </div>
+    );
   }
 }
