@@ -7,24 +7,22 @@ import CallbackHandler from "./Callback";
 import { Loading } from "./Common";
 import Landing from "./Landing";
 
-import "./app.css";
+import "./App.css";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="app">
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/home">
-            <MenuBase />
-          </Route>
-          <Route path="/auth">
-            <CallbackHandler />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/home">
+          <MenuBase />
+        </Route>
+        <Route path="/auth">
+          <CallbackHandler />
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 }
@@ -64,7 +62,7 @@ class MenuBase extends Component {
 
     return (
       <div className="menu">
-        <h1>AchievementHunting.com - Verification</h1>
+        <h1>AchievementHunting.com Verification</h1>
         {user ? <Accounts user={user} updateUser={this.updateUser} /> : <Landing />}
       </div>
     );

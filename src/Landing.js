@@ -2,7 +2,9 @@ import React from "react";
 
 import { DISCORD_CLIENT_ID, IS_LOCAL, LOCATION } from "./constants";
 
-import SiteIcon from "./media/100pals-128.png";
+import SiteIcon from "./media/achievementhunting.com-logo.png";
+
+import "./Landing.css";
 
 export default function Landing() {
   const params = new URLSearchParams({
@@ -17,10 +19,13 @@ export default function Landing() {
 
   return (
     <>
-      <img src={SiteIcon} alt="AchievementHunting.com Icon" />
-      <h2></h2>
-      <p>Connect your gaming accounts to get verified on the Discord Server</p>
-      <a href={oauthURL}>Login with Discord</a>
+      <img className="icon" src={SiteIcon} alt="AchievementHunting.com Icon" />
+      <div className="divider" />
+      <p>Sign in with Discord in order to start verifying ownership of your gaming accounts.</p>
+      <p>You will be prompted to verify the platforms you play game on..</p>
+      <div className="login">
+        <a href={oauthURL}>Sign in with Discord</a>
+      </div>
     </>
   );
 }

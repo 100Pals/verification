@@ -1,0 +1,49 @@
+.user {
+  margin-top: 1em;
+  margin-bottom: -1em;
+  text-align: center;
+}
+
+.logout {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: large;
+  padding: 0;
+  color: red;
+}
+
+.platform {
+  margin: 0.5em;
+  padding: 1em;
+  color: white;
+}
+
+.platform * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.platform img {
+  height: 2em;
+  width: 2em;
+}
+
+.platform div {
+  padding-inline: 0.5em;
+}
+
+.platform a {
+  float: right;
+  background-color: #0062cc;
+
+  padding: 7px;
+  border-radius: 5px;
+  color: white;
+}
+
+h3 {
+  margin-top: 2em;
+  text-align: center;
+}

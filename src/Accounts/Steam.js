@@ -2,6 +2,10 @@ import React from "react";
 
 import { LOCATION } from "../constants";
 
+import SteamIcon from "../media/steam-logo-white.png";
+
+import "./Steam.css";
+
 export default function Steam({ data }) {
   const params = new URLSearchParams({
     "openid.mode": "checkid_setup",
@@ -11,25 +15,13 @@ export default function Steam({ data }) {
     "openid.identity": "http://specs.openid.net/auth/2.0/identifier_select",
   });
 
-  const signin = "https://steamcommunity.com/openid/login?" + params.toString();
-
-  if (!data) {
-    return (
-      <p>
-        <a href={signin}>Sign in with Steam.</a>
-      </p>
-    );
-  }
-
-  const url = "https://steamcommunity.com/profiles/" + data.id;
+  const url = "https://steamcommunity.com/openid/login?" + params.toString();
 
   return (
-    <div>
-      Connected Steam account:{" "}
-      <a href={url} target="_blank">
-        {data.name}
-      </a>
-      <a href={signin}>Connect another account</a>
-    </div>
+    <>
+      <img src={SteamIcon} />
+      <div>{data ? data.name : "Not Connected"}</div>
+      <a href={url}>{data ? "Change Account" : "Connect Account"}</a>
+    </>
   );
 }

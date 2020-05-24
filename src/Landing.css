@@ -1,0 +1,16 @@
+p,
+.login {
+  text-align: center;
+}
+
+.login {
+  margin-top: 30%;
+}
+
+.login a {
+  font-size: x-large;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: #0062cc;
+}
