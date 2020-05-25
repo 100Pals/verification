@@ -19,7 +19,7 @@ export default function Xbox({ data }) {
   const url = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?" + params.toString();
   return (
     <>
-      <img src={XboxIcon} />
+      <img title="Xbox" src={XboxIcon} />
       <div>{data ? data.name : "Not Connected"}</div>
       <a href={url}>{data ? "Change Account" : "Connect Account"}</a>
     </>

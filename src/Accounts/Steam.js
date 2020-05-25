@@ -19,7 +19,7 @@ export default function Steam({ data }) {
 
   return (
     <>
-      <img src={SteamIcon} />
+      <img title="Steam" src={SteamIcon} />
       <div>{data ? data.name : "Not Connected"}</div>
       <a href={url}>{data ? "Change Account" : "Connect Account"}</a>
     </>
