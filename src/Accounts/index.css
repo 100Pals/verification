@@ -17,7 +17,6 @@
 .platform {
   margin: 0.5em;
   padding: 1em;
-  color: white;
 }
 
 .platform * {
@@ -31,7 +30,7 @@
 }
 
 .platform div {
-  padding-inline: 0.5em;
+  padding-left: 1em;
 }
 
 .platform a {
