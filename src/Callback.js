@@ -3,12 +3,14 @@ import { Redirect, withRouter } from "react-router-dom";
 
 import api, { APIError } from "./api";
 import { AppFailure, Loading } from "./Common";
+import Reminder from "./Reminder";
 
 class CallbackHandler extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { loading: true, error: null };
+    this.reminderSeen = this.reminderSeen.bind(this);
+    this.state = { loading: true, error: null, steam: null };
   }
 
   async componentDidMount() {
@@ -21,14 +23,18 @@ class CallbackHandler extends Component {
     this.setState({ loading: false });
   }
 
+  async reminderSeen() {
+    this.setState({ steam: null });
+  }
+
   async processData() {
     const path = this.props.location.pathname;
     const search = new URLSearchParams(this.props.location.search);
 
     // The Discord and Xbox auth flow can be cancelled
-    // In this case the user is redirected back to /app
+    // In this case the user is redirected back to /verify
     switch (path) {
-      case "/auth/discord": {
+      case "/verify/discord": {
         const code = search.get("code");
 
         if (code) {
@@ -36,11 +42,12 @@ class CallbackHandler extends Component {
         }
         break;
       }
-      case "/auth/steam": {
-        await api.createSteamConnection(Object.fromEntries(search));
+      case "/verify/steam": {
+        const data = await api.createSteamConnection(Object.fromEntries(search));
+        this.setState({ steam: data });
         break;
       }
-      case "/auth/xbox": {
+      case "/verify/xbox": {
         const code = search.get("code");
 
         if (code) {
@@ -55,13 +62,17 @@ class CallbackHandler extends Component {
   }
 
   render() {
-    const { loading, error } = this.state;
+    const { loading, error, steam } = this.state;
 
     if (error) {
       return <AppFailure error={error} />;
     }
 
-    return loading ? <Loading /> : <Redirect to="/home" />;
+    if (steam && steam.status === "private") {
+      return <Reminder id={steam.id} reminderSeen={this.reminderSeen} />;
+    }
+
+    return loading ? <Loading /> : <Redirect to="/verify" />;
   }
 }
 

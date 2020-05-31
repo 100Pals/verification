@@ -9,7 +9,7 @@ import "./Landing.css";
 export default function Landing() {
   const params = new URLSearchParams({
     client_id: DISCORD_CLIENT_ID,
-    redirect_uri: LOCATION + "/auth/discord",
+    redirect_uri: LOCATION + "/verify/discord",
     scope: "identify connections",
     response_type: "code",
     prompt: IS_LOCAL ? "none" : "consent", // Save some time clicking authorize :)
@@ -20,7 +20,6 @@ export default function Landing() {
   return (
     <>
       <img className="icon" src={SiteIcon} alt="AchievementHunting.com Icon" />
-      <div className="divider" />
       <p>Sign in with Discord in order to start verifying ownership of your gaming accounts.</p>
       <p>You will be prompted to verify the platforms you play games on.</p>
       <div className="login">

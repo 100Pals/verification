@@ -1,15 +1,19 @@
+p {
+  margin-top: 1em;
+}
+
 p,
 .login {
   text-align: center;
 }
 
 .login {
-  margin-top: 30%;
+  padding: 1em;
 }
 
 .login a {
-  font-size: x-large;
-  padding: 10px;
+  font-size: large;
+  padding: 5px;
   border-radius: 5px;
   color: white;
   background-color: #0062cc;

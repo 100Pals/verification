@@ -1,0 +1,25 @@
+.privacy-wrapper {
+  max-width: 40em;
+  display: block;
+  margin: 0 auto;
+}
+
+.privacy {
+  max-width: 100%;
+}
+
+.continue {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+.continue button {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: large;
+  padding: 0;
+  color: #8bd;
+}

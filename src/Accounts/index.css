@@ -1,6 +1,6 @@
 .user {
   margin-top: 1em;
-  margin-bottom: -1em;
+  margin-bottom: 1em;
   text-align: center;
 }
 
@@ -30,10 +30,16 @@
 }
 
 .platform div {
+  color: white;
   padding-left: 1em;
 }
 
-.platform a {
+.platform .account {
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.platform .connect {
   float: right;
   background-color: #0062cc;
 
@@ -42,7 +48,17 @@
   color: white;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 h3 {
-  margin-top: 2em;
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 0;
   text-align: center;
+}
+
+.accounts p {
+  margin-top: 0;
 }

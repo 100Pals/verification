@@ -13,13 +13,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route path="/home">
+        <Route exact path="/verify">
           <MenuBase />
         </Route>
-        <Route path="/auth">
+        <Route path="/verify/*">
           <CallbackHandler />
         </Route>
       </Switch>
@@ -62,7 +59,7 @@ class MenuBase extends Component {
 
     return (
       <div className="menu">
-        <h1>AchievementHunting.com Verification</h1>
+        <h1>Account Verification</h1>
         {user ? <Accounts user={user} updateUser={this.updateUser} /> : <Landing />}
       </div>
     );
