@@ -19,7 +19,7 @@ test:
   - npm run build-prod
   artifacts:
     paths:
-    - "."
+    - "../public/verify"
   except:
   - master
 
@@ -29,7 +29,7 @@ pages:
   - npm run build-prod
   artifacts:
     paths:
-    - "."
+    - "../public/verify"
   only:
   - master
 
