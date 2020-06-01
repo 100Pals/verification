@@ -2,7 +2,6 @@ image: timbru31/ruby-node:2.7
 
 stages:
   - test
-  - deploy
   - trigger
 
 variables:
@@ -17,15 +16,6 @@ test:
   stage: test
   script:
   - npm run build-prod
-  except:
-  - master
-
-pages:
-  stage: deploy
-  script:
-  - npm run build-prod
-  only:
-  - master
 
 trigger:
   stage: trigger
