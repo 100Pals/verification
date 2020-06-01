@@ -35,8 +35,8 @@ export default function Accounts({ user, updateUser }) {
         <Xbox data={user.connections.xbox} />
       </div>
 
-      <h3>Is your platform not available?</h3>
-      <p>Get in contact with 100Pals Staff and let us know!</p>
+      <h3>PlayStation, RetroAchievements, (or another platform) player?</h3>
+      <p>Please DM a 100Pals Mod on the Discord. !</p>
     </div>
   );
 }
