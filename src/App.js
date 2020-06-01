@@ -7,7 +7,7 @@ import CallbackHandler from "./Callback";
 import { Loading } from "./Common";
 import Landing from "./Landing";
 
-import "./App.css";
+import "./app.css";
 
 export default function App() {
   return (
