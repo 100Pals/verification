@@ -6,7 +6,6 @@ stages:
   - trigger
 
 variables:
-  JEKYLL_ENV: production
   LC_ALL: C.UTF-8
   GITLAB_BASE_URL: "https://gitlab.com"
   APP_PROJECT_ID: 14151392
@@ -20,7 +19,7 @@ test:
   - npm run build-prod
   artifacts:
     paths:
-    - test
+    - "."
   except:
   - master
 
@@ -30,7 +29,7 @@ pages:
   - npm run build-prod
   artifacts:
     paths:
-    - public
+    - "."
   only:
   - master
 
