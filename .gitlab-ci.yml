@@ -1,0 +1,42 @@
+image: timbru31/ruby-node:2.7
+
+stages:
+  - test
+  - deploy
+  - trigger
+
+variables:
+  JEKYLL_ENV: production
+  LC_ALL: C.UTF-8
+  GITLAB_BASE_URL: "https://gitlab.com"
+  APP_PROJECT_ID: 14151392
+
+before_script:
+  - npm i
+
+test:
+  stage: test
+  script:
+  - npm run build-prod
+  artifacts:
+    paths:
+    - test
+  except:
+  - master
+
+pages:
+  stage: deploy
+  script:
+  - npm run build-prod
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+
+trigger:
+  stage: trigger
+  script:
+    - curl --request POST --form "token=$CI_JOB_TOKEN" --form ref=master $GITLAB_BASE_URL/api/v4/projects/$APP_PROJECT_ID/trigger/pipeline
+  only:
+    - master
