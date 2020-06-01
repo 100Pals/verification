@@ -36,7 +36,7 @@ export default function Accounts({ user, updateUser }) {
       </div>
 
       <h3>PlayStation, RetroAchievements, (or another platform) player?</h3>
-      <p>Please DM a 100Pals Mod on the Discord. !</p>
+      <p>Please DM a 100Pals Mod on the Discord.</p>
     </div>
   );
 }
