@@ -7,14 +7,24 @@ p,
   text-align: center;
 }
 
-.login {
+.wrap-login {
   padding: 1em;
+  text-align: center;
 }
 
-.login a {
+.login {
+  display: inline-block;
   font-size: large;
   padding: 5px 1em;
   border-radius: 5px;
+  background-color: #7289da;
+}
+
+.login a {
   color: white;
-  background-color: #0062cc;
+}
+
+.login img {
+  width: 2em;
+  padding-right: 0.5em;
 }
