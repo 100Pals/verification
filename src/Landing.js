@@ -23,11 +23,11 @@ export default function Landing() {
       <img className="icon" src={SiteIcon} alt="AchievementHunting.com Icon" />
       <p>Sign in with Discord in order to start verifying ownership of your gaming accounts.</p>
       <p>You will be prompted to verify the platforms you play games on.</p>
-      <div className="wrap-login">
-        <div className="login">
+      <div className="login">
+        <a href={oauthURL}>
           <img src={DiscordLogo} alt="Discord" />
-          <a href={oauthURL}>Sign in with Discord</a>
-        </div>
+          Sign in with Discord
+        </a>
       </div>
     </>
   );
